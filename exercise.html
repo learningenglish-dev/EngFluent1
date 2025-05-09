@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Gap Fill Exercise</title>
+    <style>
+        /* STYLE CHUNG CHO GIAO DIỆN BÀI TẬP */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        .exercise {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input {
+            border: 2px solid #ddd;
+            padding: 8px 12px;
+            width: 100px;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .correct { color: #28a745; }
+        .incorrect { color: #dc3545; }
+        #score-result {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <!-- MENU ĐIỀU HƯỚNG
+         - Tương tự các trang khác
+         - Không nên xóa nếu muốn người dùng quay về vocabulary.html -->
+    <div id="nav-placeholder"></div>
+
+<script>
+  fetch('nav.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script>
+        
+
+    <div class="exercise">
+  <h1 style="text-align: center;">Vocabulary Gap Fill Exercise</h1>
+  <div id="exercise-container"></div>
+  <button onclick="checkAnswers()">Check Answers</button>
+  <div id="score-result"></div>
+        
+</div>
+       <script src="exercise-data.js"></script>
+<script>
+  // Render bài tập từ dữ liệu
+  const container = document.getElementById('exercise-container');
+
+  exerciseData.forEach(item => {
+    const p = document.createElement('p');
+    p.innerHTML = item.sentence + `<span id="result${item.id}"></span>`;
+    container.appendChild(p);
+  });
+
+  // Gộp tất cả đáp án vào 1 object duy nhất
+  const allAnswers = exerciseData.reduce((acc, item) => {
+    return { ...acc, ...item.answers };
+  }, {});
+
+  function checkAnswers() {
+    let score = 0;
+    const maxScore = Object.keys(allAnswers).length;
+    const scorePerQuestion = 1;
+
+    for (let gapId in allAnswers) {
+      const input = document.getElementById(gapId);
+      const userAnswer = input.value.trim().toLowerCase();
+      const correctAnswer = allAnswers[gapId].toLowerCase();
+
+      if (userAnswer === correctAnswer) {
+        input.style.borderColor = "#28a745";
+        score += scorePerQuestion;
+      } else {
+        input.style.borderColor = "#dc3545";
+      }
+    }
+
+    const score10 = Math.round((score / maxScore) * 10 * 10) / 10;
+    document.getElementById("score-result").innerHTML =
+        `Your score: <strong>${score10}/10</strong>`;
+  }
+// ✅ Thêm sự kiện Enter sau khi render xong
+  const inputs = container.querySelectorAll("input");
+  inputs.forEach(input => {
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        checkAnswers();
+      }
+    });
+  });
+</script>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vocabulary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 15px 10px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer b {
+      color: #ffffff;
+    }
+
+    .footer a {
+      color: #1abc9c;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- Nội dung chính -->
+  <div class="content">
+    <h2>Vocabulary Page</h2>
+    <p>Welcome to the vocabulary section of EngFluent!</p>
+    <!-- Your content here -->
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <b>Ms. Jamie</b> – English Teacher at <b>EngFluent</b><br>
+    📧 Contact: <a href="mailto:msjamie@engfluent.com">msjamie@engfluent.com</a>
+  </div>
+
+</body>
+</html>
+

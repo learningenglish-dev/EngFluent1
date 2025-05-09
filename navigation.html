@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <style>
+        /* PHẦN STYLE CHO MENU ĐIỀU HƯỚNG NGANG
+           - Dùng chung cho tất cả các trang
+           - Có thể tách ra file CSS riêng nếu muốn tái sử dụng tốt hơn */
+        .horizontal-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            padding: 15px;
+            background-color: #4CAF50;
+            margin: 0;
+            border-radius: 8px;
+        }
+        .horizontal-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .horizontal-menu a:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <!-- PHẦN MENU CHÍNH (DÙNG CHUNG)
+         - Không nên xóa nếu các trang còn lại cần điều hướng
+         - Ảnh hưởng tới các trang: vocabulary.html, exercise.html -->
+    <div id="nav-placeholder"></div>
+
+<script>
+  fetch('nav.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script>
+</body>
+</html>

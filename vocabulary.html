@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary</title>
+    <style>
+        /* STYLE CHUNG CHO TRANG NÀY
+           - Bao gồm định dạng chữ và hộp hiển thị từ vựng */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        .synonym-group {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: fit-content;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .synonym-group p {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- MENU ĐIỀU HƯỚNG DÁN TỪ navigation.html
+         - Có thể copy thủ công hoặc dùng JavaScript để include động
+         - Không nên xóa nếu muốn chuyển trang dễ dàng -->
+    <div id="nav-placeholder"></div>
+
+<script>
+  fetch('nav.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script>
+
+
+    <!-- CÁC NHÓM TỪ ĐỒNG NGHĨA
+         - Là dữ liệu gốc cho bài tập trong exercise.html
+         - Không nên xóa nếu exercise.html vẫn sử dụng từ này -->
+    <div id="vocabulary-container"></div>
+
+    <script src="vocabulary-data.js"></script>
+    <script>
+    const container = document.getElementById('vocabulary-container');
+    vocabularyData.forEach(group => {
+        const div = document.createElement('div');
+        div.className = 'synonym-group';
+        div.innerHTML = `<p>${group.words.join(" = ")}</p>`;
+        container.appendChild(div);
+    });
+</script>
+
+</body>
+</html>
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vocabulary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 15px 10px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer b {
+      color: #ffffff;
+    }
+
+    .footer a {
+      color: #1abc9c;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- Nội dung chính -->
+  <div class="content">
+    <h2>Vocabulary Page</h2>
+    <p>Welcome to the vocabulary section of EngFluent!</p>
+    <!-- Your content here -->
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <b>Ms. Jamie</b> – English Teacher at <b>EngFluent</b><br>
+    📧 Contact: <a href="mailto:msjamie@engfluent.com">msjamie@engfluent.com</a>
+  </div>
+
+</body>
+</html>
+
+
